@@ -64,8 +64,8 @@ export const CreateForm = ({
     })
 
     function handleCategoryChange(categoryName: string) {
-        if (categories == undefined) return;
-        const selectedCategory = categories.find(category => category.name == categoryName);
+        if (categories === undefined) return;
+        const selectedCategory = categories.find(category => category.name === categoryName);
         if (selectedCategory) {
             setSubcategories(selectedCategory.subcategories)
         }

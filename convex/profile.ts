@@ -15,7 +15,7 @@ export const create = mutation({
         const identity = await ctx.auth.getUserIdentity();
 
         if (!identity) {
-            throw new Error("Unauthenticated");
+            throw new Error("Unauthorized");
         }
 
         const user = await ctx.db
@@ -24,17 +24,14 @@ export const create = mutation({
             )
             .unique();
 
-            const profileId = await ctx.db.insert("profile", {
+            const profileId = await ctx.db.insert("profiles", {
                 title: args.title,
-                userId: user?._id,
-                published:false,
+                description: args.description,
+                subcategoryId: args.subcategoryId as
+                Id<"subcategories">,
+                studentId: user?._id!,
+                published: false,
                 clicks: 0,
-                title: args.title
-                headline: 
-                education: 
-                summary:
-                clicks: 
-                profileTheme: 
                 
             })
 
