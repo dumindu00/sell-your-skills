@@ -1,7 +1,7 @@
 "use client"
 import { api } from "@/convex/_generated/api";
 import { Doc, Id } from "@/convex/_generated/dataModel";
-import { useQueries } from "convex/react";
+import { useQueries, useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectValue, SelectTrigger } from "@/components/ui/select";
 
 import { toast } from "sonner";
+import { useApiMutation } from "@/hooks/use-api-mutation";
 
 
 
@@ -48,7 +49,7 @@ const defaultValues: Partial<CreateFormValues> = {
 export const CreateForm = ({
     username
 }: CreateFormProps) => {
-    const categories = useQueries(api.categories.get);
+    const categories = useQuery(api.categories.get);
     const [subcategories, setSubcategories] =
     useState<Doc<"subcategories">[]>([]);
     const {
